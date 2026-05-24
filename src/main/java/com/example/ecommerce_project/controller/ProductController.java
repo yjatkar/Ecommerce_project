@@ -13,7 +13,7 @@ import java.util.List;
 //request coming to /Product will ,transfer to this controller
 @RequestMapping("/products")//requestmapping is endpoint of all apis in this controller
 public class ProductController {
-    private ProductService productService;//before injecting dependency we should have the object of productService
+    private ProductService productService;
     ProductController(ProductService productService)
     {
         this.productService=productService;
@@ -21,7 +21,8 @@ public class ProductController {
     //get single product
     @GetMapping("/{id}")//getmapping is exact address of that api
     public Product getProductById(@PathVariable("id") Long id) {
-        return new Product();
+        return productService.getProductById(id);
+
     }
     //get all products
     @GetMapping()

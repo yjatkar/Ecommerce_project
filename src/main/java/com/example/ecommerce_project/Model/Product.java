@@ -1,5 +1,6 @@
 package com.example.ecommerce_project.Model;
 
+import com.example.ecommerce_project.Dtos.FakeStoreProductDto;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,9 +9,10 @@ import lombok.Setter;
 public class Product {
     private long id;
     private String title;
-    private String price;
+    private Double price;
     private  Category category;
     private String description;
     private String image;
+
 
 }
