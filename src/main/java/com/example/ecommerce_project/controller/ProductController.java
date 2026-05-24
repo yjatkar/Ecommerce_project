@@ -1,6 +1,7 @@
 package com.example.ecommerce_project.controller;
 
 import com.example.ecommerce_project.Model.Product;
+import com.example.ecommerce_project.Service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -11,7 +12,12 @@ import java.util.List;
 //handling that
 //request coming to /Product will ,transfer to this controller
 @RequestMapping("/products")//requestmapping is endpoint of all apis in this controller
-public class product_controller {
+public class ProductController {
+    private ProductService productService;//before injecting dependency we should have the object of productService
+    ProductController(ProductService productService)
+    {
+        this.productService=productService;
+    }
     //get single product
     @GetMapping("/{id}")//getmapping is exact address of that api
     public Product getProductById(@PathVariable("id") Long id) {
