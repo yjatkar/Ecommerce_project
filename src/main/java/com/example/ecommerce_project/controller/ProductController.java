@@ -27,11 +27,14 @@ public class ProductController {
     //get all products
     @GetMapping()
     public List<Product> getAllProducts() {
-        return new ArrayList<>();
+
+//        return new ArrayList<>();
+        return productService.getAllProducts();
     }
     //create a product
     @PostMapping()
     public Product createProduct(@RequestBody Product product) {
+
         return new Product();
     }
     //update product -->partial update

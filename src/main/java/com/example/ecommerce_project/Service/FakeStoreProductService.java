@@ -5,6 +5,7 @@ import com.example.ecommerce_project.Model.Product;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -28,7 +29,16 @@ public class FakeStoreProductService implements ProductService{
         return fakeStoreProductDto.toProduct();
     }
     public List<Product> getAllProducts(){
-       return null;
+        FakeStoreProductDto[] fakeStoreProductDto=restTemplate.getForObject("https://fakestoreapi.com/products/",FakeStoreProductDto[].class);
+
+        List<Product> products=new ArrayList<>();
+
+        for(FakeStoreProductDto fakeStoreProductDtos : fakeStoreProductDto)
+        {
+            products.add(fakeStoreProductDtos.toProduct());
+        }
+        return products;
+
     }
    public Product createProduct()
     {
