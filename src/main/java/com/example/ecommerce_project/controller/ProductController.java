@@ -1,6 +1,8 @@
 package com.example.ecommerce_project.controller;
 
+import com.example.ecommerce_project.Dtos.FakeStoreProductDto;
 import com.example.ecommerce_project.Model.Product;
+import com.example.ecommerce_project.Service.FakeStoreProductService;
 import com.example.ecommerce_project.Service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,22 +35,21 @@ public class ProductController {
     }
     //create a product
     @PostMapping()
-    public Product createProduct(@RequestBody Product product) {
-
-        return new Product();
+    public Product createProduct(@RequestBody Product product ) {
+        return productService.createProduct(product);
     }
     //update product -->partial update
     @PatchMapping("/{id}")
-    public Product updateProduct(@PathVariable("id") Long id,@RequestBody Product product)
+    public Product updateProduct(@PathVariable("id") Long id,@RequestBody FakeStoreProductDto fakeStoreProductDto)
     {
         return new Product();
     }
 
     //replace product
     @PutMapping("/{id}")
-    public Product replaceProduct(@PathVariable("id") Long id,@RequestBody Product product)
-    {
-        return new Product();
+    public Product replaceProduct(@PathVariable("id") Long id,@RequestBody Product product){
+
+        return productService.replaceProduct(id,product);
     }
 
     //delete product
