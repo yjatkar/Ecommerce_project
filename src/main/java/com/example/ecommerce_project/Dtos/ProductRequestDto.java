@@ -26,11 +26,24 @@ public class ProductRequestDto {
 
     public FakeStoreProductDto toFakeStoreProductDto(){
         FakeStoreProductDto fakeStoreProductDto=new FakeStoreProductDto();
-        fakeStoreProductDto.setDescription(this.description);
-        fakeStoreProductDto.setTitle(this.title);
-        fakeStoreProductDto.setPrice(this.price);
-        fakeStoreProductDto.setImage(this.image);
-        fakeStoreProductDto.setCategory(this.category.getTitle());
+        if(this.description!=null){
+            fakeStoreProductDto.setDescription(this.description);
+        }
+        if(this.title!=null){
+            fakeStoreProductDto.setTitle(this.title);
+        }
+        if(this.price!=null){
+            fakeStoreProductDto.setPrice(this.price);
+        }
+        if(this.image!=null)
+        {
+            fakeStoreProductDto.setImage(this.image);
+        }
+        if(this.category!=null)
+        {
+            fakeStoreProductDto.setCategory(this.category.getTitle());
+        }
+
         return fakeStoreProductDto;
 
     }

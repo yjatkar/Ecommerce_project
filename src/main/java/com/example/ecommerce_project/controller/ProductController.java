@@ -44,9 +44,9 @@ public class ProductController {
     }
     //update product -->partial update
     @PatchMapping("/{id}")
-    public Product updateProduct(@PathVariable("id") Long id,@RequestBody FakeStoreProductDto fakeStoreProductDto)
+    public Product updateProduct(@PathVariable("id") Long id,@RequestBody Product product)
     {
-        return new Product();
+        return productService.updateProduct(id,product);
     }
 
     //replace product
