@@ -4,6 +4,9 @@ import com.example.ecommerce_project.Dtos.FakeStoreProductDto;
 import com.example.ecommerce_project.Model.Product;
 import com.example.ecommerce_project.Service.FakeStoreProductService;
 import com.example.ecommerce_project.Service.ProductService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -22,8 +25,9 @@ public class ProductController {
     }
     //get single product
     @GetMapping("/{id}")//getmapping is exact address of that api
-    public Product getProductById(@PathVariable("id") Long id) {
-        return productService.getProductById(id);
+    public ResponseEntity<Product> getProductById(@PathVariable("id") Long id) {
+        Product product= productService.getProductById(id);
+        return new ResponseEntity<>(product, HttpStatus.OK);
 
     }
     //get all products
