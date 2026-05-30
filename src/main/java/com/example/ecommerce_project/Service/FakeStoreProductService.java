@@ -2,6 +2,7 @@ package com.example.ecommerce_project.Service;
 
 import com.example.ecommerce_project.Dtos.FakeStoreProductDto;
 import com.example.ecommerce_project.Dtos.ProductRequestDto;
+import com.example.ecommerce_project.Exception.ProductNotFoundException;
 import com.example.ecommerce_project.Model.Category;
 import com.example.ecommerce_project.Model.Product;
 import org.springframework.http.HttpEntity;
@@ -24,7 +25,7 @@ public class FakeStoreProductService implements ProductService{
         this.restTemplate=restTemplate;
     }
 
-   public Product getProductById(Long id)
+   public Product getProductById(Long id) throws ProductNotFoundException
     {
         //convert fakeStoreProductDto to product object
         FakeStoreProductDto fakeStoreProductDto=restTemplate.getForObject("https://fakestoreapi.com/products/"+id, FakeStoreProductDto.class);
@@ -32,7 +33,8 @@ public class FakeStoreProductService implements ProductService{
 
         if(fakeStoreProductDto==null)
         {
-            return null;
+            throw new ProductNotFoundException(id,"product not found for id-->");
+            //return null;
         }
         return fakeStoreProductDto.toProduct();
     }
